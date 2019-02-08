@@ -1,11 +1,11 @@
 package tomas.home.sfgpetclinic.services.map;
 
 import tomas.home.sfgpetclinic.model.Vet;
-import tomas.home.sfgpetclinic.services.CrudService;
+import tomas.home.sfgpetclinic.services.VetServices;
 
 import java.util.Set;
 
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet,Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetServices{
     @Override
     public Set<Vet> findAll() {
         return super.findAll();
