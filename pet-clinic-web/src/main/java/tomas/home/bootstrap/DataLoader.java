@@ -1,13 +1,12 @@
 package tomas.home.bootstrap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import tomas.home.sfgpetclinic.model.Owner;
 import tomas.home.sfgpetclinic.model.Vet;
 import tomas.home.sfgpetclinic.services.OwnerServices;
 import tomas.home.sfgpetclinic.services.VetServices;
-import tomas.home.sfgpetclinic.services.map.OwnerServiceMap;
-import tomas.home.sfgpetclinic.services.map.VetServiceMap;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -17,9 +16,10 @@ public class DataLoader implements CommandLineRunner {
 
     private final VetServices vetServices;
 
-    public DataLoader(){
-        ownerServices = new OwnerServiceMap();
-        vetServices = new VetServiceMap();
+    @Autowired
+    public DataLoader(OwnerServices ownerServices, VetServices vetServices){
+        this.ownerServices = ownerServices;
+        this.vetServices = vetServices;
     }
 
     @Override

@@ -1,10 +1,12 @@
 package tomas.home.sfgpetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import tomas.home.sfgpetclinic.model.Pet;
 import tomas.home.sfgpetclinic.services.CrudService;
 
 import java.util.Set;
 
+@Service
 public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long>
 {
     @Override
