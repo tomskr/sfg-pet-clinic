@@ -2,12 +2,23 @@ package tomas.home.sfgpetclinic.services.map;
 
 import org.springframework.stereotype.Service;
 import tomas.home.sfgpetclinic.model.Owner;
-import tomas.home.sfgpetclinic.services.OwnerServices;
+import tomas.home.sfgpetclinic.model.Pet;
+import tomas.home.sfgpetclinic.services.OwnerService;
+import tomas.home.sfgpetclinic.services.PetService;
+import tomas.home.sfgpetclinic.services.PetTypeService;
 
 import java.util.Set;
 
 @Service
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerServices{
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
+
+    private final PetTypeService petTypeService;
+    private final PetService petService;
+
+    public OwnerServiceMap(PetTypeService petTypeService, PetService petService) {
+        this.petTypeService = petTypeService;
+        this.petService = petService;
+    }
 
     @Override
     public Set<Owner> findAll() {
@@ -21,7 +32,30 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner save(Owner object) {
-        return super.save(object);
+
+        if (object != null) {
+            if (object.getPets() != null) {
+                object.getPets().forEach(pet -> {
+                    if (pet.getPetType() != null) {
+                        if (pet.getPetType().getId() == null) {
+                            pet.setPetType(petTypeService.save(pet.getPetType()));
+                        }
+                    } else {
+                        throw new RuntimeException("Pet Type is required");
+                    }
+
+                    if (pet.getId() == null) {
+                        Pet savedPet = petService.save(pet);
+                        pet.setId(savedPet.getId());
+                    }
+                });
+            }
+
+            return super.save(object);
+
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -33,7 +67,6 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     public void deleteById(Long id) {
         super.deleteById(id);
     }
-
 
     @Override
     public Owner findByLastName(String lastName) {

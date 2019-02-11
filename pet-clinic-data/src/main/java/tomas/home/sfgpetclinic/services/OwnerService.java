@@ -2,7 +2,7 @@ package tomas.home.sfgpetclinic.services;
 
 import tomas.home.sfgpetclinic.model.Owner;
 
-public interface OwnerServices extends CrudService<Owner, Long>{
+public interface OwnerService extends CrudService<Owner, Long> {
 
     Owner findByLastName(String lastName);
 

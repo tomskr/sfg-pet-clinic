@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'owners')}">
+<html lang="en" th:replace="~{fragments/layout :: layout (~{::body},'owners')}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>List of Owners</title>
 </head>
 <body>
 <!--/*@thymesVar id="Owner" type="tomas.home.sfgpetclinic.model.Owner"*/-->
-<h2 th:text ="'List of Owners'">List of Owners...</h2>
+<h2 th:text="'List of Owners'">List of Owners...</h2>
 <table class="table table-striped">
     <thead>
     <tr>

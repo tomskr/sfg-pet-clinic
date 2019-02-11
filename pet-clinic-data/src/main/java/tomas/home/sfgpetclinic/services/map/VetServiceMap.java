@@ -2,12 +2,12 @@ package tomas.home.sfgpetclinic.services.map;
 
 import org.springframework.stereotype.Service;
 import tomas.home.sfgpetclinic.model.Vet;
-import tomas.home.sfgpetclinic.services.VetServices;
+import tomas.home.sfgpetclinic.services.VetService;
 
 import java.util.Set;
 
 @Service
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetServices{
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {
         return super.findAll();

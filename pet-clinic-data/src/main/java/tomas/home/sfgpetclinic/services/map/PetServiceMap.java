@@ -2,13 +2,12 @@ package tomas.home.sfgpetclinic.services.map;
 
 import org.springframework.stereotype.Service;
 import tomas.home.sfgpetclinic.model.Pet;
-import tomas.home.sfgpetclinic.services.CrudService;
+import tomas.home.sfgpetclinic.services.PetService;
 
 import java.util.Set;
 
 @Service
-public class PetServiceMap extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long>
-{
+public class PetServiceMap extends AbstractMapService<Pet, Long> implements PetService {
     @Override
     public Set<Pet> findAll() {
         return super.findAll();
