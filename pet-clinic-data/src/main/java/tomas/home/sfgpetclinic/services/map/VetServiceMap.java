@@ -1,13 +1,26 @@
 package tomas.home.sfgpetclinic.services.map;
 
+
 import org.springframework.stereotype.Service;
+import tomas.home.sfgpetclinic.model.Speciality;
 import tomas.home.sfgpetclinic.model.Vet;
+import tomas.home.sfgpetclinic.services.SpecialtyService;
 import tomas.home.sfgpetclinic.services.VetService;
 
 import java.util.Set;
 
+/**
+ * Created by jt on 7/21/18.
+ */
 @Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
+
+    private final SpecialtyService specialtyService;
+
+    public VetServiceMap(SpecialtyService specialtyService) {
+        this.specialtyService = specialtyService;
+    }
+
     @Override
     public Set<Vet> findAll() {
         return super.findAll();
@@ -20,6 +33,16 @@ public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetS
 
     @Override
     public Vet save(Vet object) {
+
+        if (object.getSpecialities().size() > 0){
+            object.getSpecialities().forEach(speciality -> {
+                if(speciality.getId() == null){
+                    Speciality savedSpecialty = specialtyService.save(speciality);
+                    speciality.setId(savedSpecialty.getId());
+                }
+            });
+        }
+
         return super.save(object);
     }
 

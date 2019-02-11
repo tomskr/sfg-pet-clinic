@@ -2,12 +2,12 @@ package tomas.home.sfgpetclinic.services.map;
 
 import org.springframework.stereotype.Service;
 import tomas.home.sfgpetclinic.model.Speciality;
-import tomas.home.sfgpetclinic.services.SpecialitysService;
+import tomas.home.sfgpetclinic.services.SpecialtyService;
 
 import java.util.Set;
 
 @Service
-public class SpecialitysMapService extends AbstractMapService<Speciality, Long> implements SpecialitysService {
+public class SpecialtyMapService extends AbstractMapService<Speciality, Long> implements SpecialtyService {
 
     @Override
     public Set<Speciality> findAll() {
@@ -15,13 +15,8 @@ public class SpecialitysMapService extends AbstractMapService<Speciality, Long> 
     }
 
     @Override
-    public void deleteById(Long id) {
-        super.deleteById(id);
-    }
-
-    @Override
-    public void delete(Speciality object) {
-        super.delete(object);
+    public Speciality findById(Long id) {
+        return super.findById(id);
     }
 
     @Override
@@ -30,8 +25,12 @@ public class SpecialitysMapService extends AbstractMapService<Speciality, Long> 
     }
 
     @Override
-    public Speciality findById(Long id) {
-        return super.findById(id);
+    public void delete(Speciality object) {
+        super.delete(object);
     }
 
+    @Override
+    public void deleteById(Long id) {
+        super.deleteById(id);
+    }
 }
