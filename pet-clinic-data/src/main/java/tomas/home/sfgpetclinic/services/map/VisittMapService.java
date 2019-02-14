@@ -1,10 +1,12 @@
 package tomas.home.sfgpetclinic.services.map;
 
+import org.springframework.stereotype.Service;
 import tomas.home.sfgpetclinic.model.Visit;
 import tomas.home.sfgpetclinic.services.VisitService;
 
 import java.util.Set;
 
+@Service
 public class VisittMapService extends AbstractMapService<Visit,Long> implements VisitService {
     @Override
     public Set<Visit> findAll() {
